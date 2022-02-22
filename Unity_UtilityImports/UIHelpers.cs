@@ -179,7 +179,6 @@ public static class UIHelpers
 
     #region ToggleCanvas Group
 
-    [System.Diagnostics.Contracts.Pure]
     [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     public static void ToggleCanvasGroup(ref CanvasGroup _cg, bool _targetValue = true)
     {
@@ -188,7 +187,6 @@ public static class UIHelpers
         _cg.interactable = _targetValue;
     }
 
-    [System.Diagnostics.Contracts.Pure]
     [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     public static void ToggleCanvasGroup(ref CanvasGroup _cg)
     {
