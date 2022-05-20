@@ -7,7 +7,7 @@
   "author": {
     "name": "Chris McCole",
     "email": "chrismccole1@gmail.com",
-    "https://www.chrismccole.com"
+    "url": "https://www.chrismccole.com"
   },
   "description": "Basic utility scripts that I import into all projects.",
   "dependencies": {
