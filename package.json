@@ -1,16 +1,11 @@
 {
   "name": "com.chrismccole.utilities",
   "displayName": "Chris' Utilities",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2019.1",
   "author": "Chris McCole",
   "description": "Basic utility scripts that I import into all projects.",
   "dependencies": {
 
-  },
-  "repository": {
-    "type": "git",
-    "url": "link",
-    "revision": "commit-hash"
   }
 }
