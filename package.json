@@ -3,9 +3,17 @@
   "displayName": "Chris' Utilities",
   "version": "1.0.1",
   "unity": "2019.1",
-  "author": "Chris McCole",
+  "licensesUrl": "See LICENSE.md"
+  "author": {
+    "name": "Chris McCole",
+    "email": "chrismccole1@gmail.com",
+    "https://www.chrismccole.com"
+  },
   "description": "Basic utility scripts that I import into all projects.",
   "dependencies": {
-
-  }
+  },
+  "keywords": [
+    "Utility",
+    "Tool"
+  ]
 }
