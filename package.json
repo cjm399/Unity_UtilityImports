@@ -1,6 +1,6 @@
 {
-  "name": "com.chrismccole.utilities",
-  "displayName": "Chris' Utilities",
+  "name": "com.chrismccole.static-utilities-scripts",
+  "displayName": "Static Utility Scripts",
   "version": "1.0.1",
   "unity": "2019.1",
   "licensesUrl": "See LICENSE.md",
