@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(PlaceItemsInGrid))]
-public class PlaceItemsInGridEditor : Editor
+namespace Utilities
 {
-    private PlaceItemsInGrid script;
-
-    private void OnEnable()
-    {
-        script = (PlaceItemsInGrid)target;
-    }
-
-	public override void OnInspectorGUI()
+	[CustomEditor(typeof(PlaceItemsInGrid))]
+	public class PlaceItemsInGridEditor : Editor
 	{
-		if (GUILayout.Button("Space Out Children"))
+		private PlaceItemsInGrid script;
+
+		private void OnEnable()
 		{
-			script.SpaceOutChildren();
+			script = (PlaceItemsInGrid)target;
 		}
 
-		base.OnInspectorGUI();
+		public override void OnInspectorGUI()
+		{
+			if (GUILayout.Button("Space Out Children"))
+			{
+				script.SpaceOutChildren();
+			}
+
+			base.OnInspectorGUI();
+		}
 	}
 }

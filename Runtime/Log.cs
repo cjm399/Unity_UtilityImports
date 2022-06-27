@@ -22,7 +22,7 @@ namespace Utilities
     {
         public static LogVerbosity minLogDisplayLevel = LogVerbosity.Display;
 
-#if !NO_LOGS || UNITY_EDITOR
+#if !SUS_NO_LOGS || UNITY_EDITOR
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         [System.Diagnostics.Contracts.Pure]
         public static void DebugMessage(LogVerbosity _verbosity, string _source, string _text)
@@ -138,29 +138,41 @@ namespace Utilities
         }
 
 #else
-    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    [System.Diagnostics.Contracts.Pure]
-    public static void Log(LogVerbosity _verbosity, string _source, string _text){}
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void DebugMessage(LogVerbosity _verbosity, string _source, string _text){}
 
-    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    [System.Diagnostics.Contracts.Pure]
-    public static void Display(string _source, string _text){}
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void Fatal(string _source, string _text){}
+        
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void Error(string _source, string _text){}
 
-    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    [System.Diagnostics.Contracts.Pure]
-    public static void Trace(string _source, string _text){ }
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void Assert(bool _check, string _text = ""){}
 
-    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    [System.Diagnostics.Contracts.Pure]
-    public static void Warning(string _source, string _text){}
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void Warning(string _source, string _text){}
 
-    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    [System.Diagnostics.Contracts.Pure]
-    public static void Error(string _source, string _text){}
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void Trace(string _source, string _text){}
 
-    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    [System.Diagnostics.Contracts.Pure]
-    public static void Assert(bool _check, string _text = ""){}
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void Display(string _source, string _text){}
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void Verbose(string _source, string _text = ""){}
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void VeryVerbose(string _source, string _text){}
 #endif
     }
 }

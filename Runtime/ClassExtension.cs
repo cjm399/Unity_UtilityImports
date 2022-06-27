@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public static class GameObjectExtensions
+public static class Utilities_GameObjectExtensions
 {
     public static List<GameObject> GetAllChildren(this GameObject Go)
     {
