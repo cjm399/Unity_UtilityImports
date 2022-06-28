@@ -113,7 +113,7 @@ namespace Utilities
         {
             if (LogVerbosity.Display <= minLogDisplayLevel)
             {
-                Debug.Log($"<color=#000000><b>Display</b> : {_source} : {_text}</color>");
+                Debug.Log($"<color=#ffffff><b>Display</b> : {_source} : {_text}</color>");
             }
         }
 
@@ -123,7 +123,7 @@ namespace Utilities
         {
             if (LogVerbosity.Verbose <= minLogDisplayLevel)
             {
-                Debug.Log($"<color=#3C3837><b>Verbose</b> : {_text}</color>");
+                Debug.Log($"<color=#484340><b>Verbose</b> : {_text}</color>");
             }
         }
 
@@ -133,7 +133,7 @@ namespace Utilities
         {
             if (LogVerbosity.VeryVerbose <= minLogDisplayLevel)
             {
-                Debug.Log($"<color=#484340><b>VeryVerbose</b> : {_source} : {_text}</color>");
+                Debug.Log($"<color=#3C3837><b>VeryVerbose</b> : {_source} : {_text}</color>");
             }
         }
 
