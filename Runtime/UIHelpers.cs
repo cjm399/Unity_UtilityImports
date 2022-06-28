@@ -295,6 +295,40 @@ namespace Utilities
             }
         }
 
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void ToggleSpriteAlpha(ref SpriteRenderer _sprRend)
+        {
+            float goalAlpha = -(_sprRend.color.a - 1);
+            Color goalColor = _sprRend.color;
+            goalColor.a = goalAlpha;
+            _sprRend.color = goalColor;
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        [System.Diagnostics.Contracts.Pure]
+        public static void LerpSpriteAlpha(ref SpriteRenderer _sprRend, float _time, float _startAlpha, float _endAlpha)
+        {
+            myStaticMB.StartCoroutine(Internal_LerpSpriteRenderer(_sprRend, _startAlpha, _endAlpha, _time));
+        }
+
+
+        private static IEnumerator Internal_LerpSpriteRenderer(UnityEngine.SpriteRenderer _spriteRenderer, float _start, float _end, float _lerpTime)
+        {
+            float timer = 0;
+            float percentage = 0;
+            Color startCol = _spriteRenderer.color;
+            Color endCol = _spriteRenderer.color;
+            startCol.a = _start;
+            startCol.a = _end;
+            while (percentage < 1)
+            {
+                percentage = (timer / _lerpTime);
+                _spriteRenderer.color = Color.Lerp(startCol, endCol, percentage);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
         #endregion
 
         #region String Formatting
