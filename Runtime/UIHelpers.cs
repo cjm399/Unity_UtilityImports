@@ -293,6 +293,8 @@ namespace Utilities
                 timer += Time.deltaTime;
                 yield return null;
             }
+            _canvasGroup.blocksRaycasts = Static.PercentAsBool(_end);
+            _canvasGroup.interactable = Static.PercentAsBool(_end);
         }
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
