@@ -5,13 +5,14 @@ namespace Utilities
 {
     public class PlaceItemsInGrid : MonoBehaviour
     {
+        public bool fillTopToBottom = true;
         public Vector3 initialGridPositionOffset = Vector3.zero;
         public float verticalSpacing = 10f;
         public float horizontalSpacing = 10f;
         [Min(1)]
         public uint maxItemsPerLine = 10;
-        public bool tryCenterHorizontal = false;
-        public bool tryCenterVertical = false;
+        public bool tryCenterHorizontal = true;
+        public bool tryCenterVertical = true;
 
         private void OnValidate()
         {
@@ -20,29 +21,43 @@ namespace Utilities
 
         public void SpaceOutChildren()
         {
+            bool myFillTopToBottom = fillTopToBottom;
+            Vector3 myInitialGridPositionOffset = initialGridPositionOffset;
+            float myVerticalSpacing = verticalSpacing;
+            float myHorizontalSpacing = horizontalSpacing;
+            uint myMaxItemsPerLine = maxItemsPerLine;
+            bool myTryCenterHorizontal = tryCenterHorizontal;
+            bool myTryCenterVertical = tryCenterVertical;
+
+
             bool isCanvas = this.GetComponent<RectTransform>() != null;
 
             List<GameObject> children = gameObject.GetAllChildren();
 
-            Vector3 initialPos = transform.position + initialGridPositionOffset;
+            Vector3 initialPos = transform.position + myInitialGridPositionOffset;
 
             if(isCanvas)
             {
                 initialPos = GetComponent<RectTransform>().anchoredPosition;
-                initialPos += initialGridPositionOffset;
+                initialPos += myInitialGridPositionOffset;
             }
 
-            if(tryCenterHorizontal)
+            if (myFillTopToBottom)
             {
-                int numHor = Mathf.Min(children.Count, (int)maxItemsPerLine)-1;
-                float totalHorizontalSpacing = numHor * horizontalSpacing;
+                myVerticalSpacing *= -1;
+            }
+
+            if (myTryCenterHorizontal)
+            {
+                int numHor = Mathf.Min(children.Count, (int)myMaxItemsPerLine)-1;
+                float totalHorizontalSpacing = numHor * myHorizontalSpacing;
                 initialPos.x -= totalHorizontalSpacing / 2f;
             }
             
-            if (tryCenterVertical)
+            if (myTryCenterVertical)
             {
-                int numVer = (children.Count-1) / (int)maxItemsPerLine;
-                float totalVerticalSpacing = numVer * verticalSpacing;
+                int numVer = (children.Count-1) / (int)myMaxItemsPerLine;
+                float totalVerticalSpacing = numVer * myVerticalSpacing;
                 initialPos.y -= totalVerticalSpacing / 2f;
             }
 
@@ -63,12 +78,12 @@ namespace Utilities
                 {
                     children[childIndex].transform.position = currPos;
                 }
-                currPos.x += horizontalSpacing;
-                if (++itemsOnLine == maxItemsPerLine)
+                currPos.x += myHorizontalSpacing;
+                if (++itemsOnLine == myMaxItemsPerLine)
                 {
                     itemsOnLine = 0;
                     currPos.x = initialPos.x;
-                    currPos.y += verticalSpacing;
+                    currPos.y += myVerticalSpacing;
                 }
             }
         }
