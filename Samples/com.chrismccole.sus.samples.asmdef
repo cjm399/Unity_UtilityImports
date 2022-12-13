@@ -1,0 +1,16 @@
+{
+    "name": "com.chrismccole.sus.samples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cc141547e6714ee4a979e1db69e9f369"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

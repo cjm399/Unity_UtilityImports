@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-namespace Utilities
+namespace Utilities.Editor
 {
+	using UnityEditor;
 	[CustomEditor(typeof(PlaceItemsInGrid))]
 	public class PlaceItemsInGridEditor : Editor
 	{

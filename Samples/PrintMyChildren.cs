@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrintMyChildren : MonoBehaviour
+namespace Utilities.Samples
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PrintMyChildren : MonoBehaviour
     {
-        foreach(GameObject go in gameObject.GetAllChildren())
+        // Start is called before the first frame update
+        void Start()
         {
-            Utilities.Log.Verbose(go.ToString());
+            foreach (GameObject go in gameObject.GetAllChildren())
+            {
+                Log.Verbose(go.ToString());
+            }
         }
     }
 }
