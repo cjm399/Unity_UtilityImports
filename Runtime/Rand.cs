@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utilities
+namespace SpacePigs.Math
 {
     public static class Rand
     {

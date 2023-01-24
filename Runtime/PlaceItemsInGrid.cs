@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using SpacePigs.Extensions;
 
-namespace Utilities
+namespace SpacePigs.Utilities
 {
     public class PlaceItemsInGrid : MonoBehaviour
     {

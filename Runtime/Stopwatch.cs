@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utilities
+namespace SpacePigs.Utilities
 {
     public class Stopwatch
     {
@@ -60,6 +60,19 @@ namespace Utilities
 
             result = stopResult + playTime;
             return result;
+        }
+
+        public float ElapsedSeconds()
+        {
+            long result = 0;
+            long stopResult = (endTime - startTime) *
+                ((int)playState & (int)StopwatchPlayState.Stoped) / (int)StopwatchPlayState.Stoped;
+
+            long playTime = ((System.DateTime.Now.Ticks / System.TimeSpan.TicksPerMillisecond) - startTime) *
+                ((int)playState & (int)StopwatchPlayState.Started) / (int)StopwatchPlayState.Started;
+
+            result = stopResult + playTime;
+            return result / 1000f;
         }
     }
 }

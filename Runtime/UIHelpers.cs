@@ -10,7 +10,7 @@ public struct lerpSettings
     public float a;
     public float b;
 }
-namespace Utilities
+namespace SpacePigs.Utilities
 {
     public static class UIHelpers
     {
@@ -149,6 +149,25 @@ namespace Utilities
 
         #endregion
 
+        #region ScreenSizing/Positioning
+
+        [System.Diagnostics.Contracts.Pure]
+        public static float CalculateElementUniformScale(Rect _drawRect, float _elementPadding, int _columns, int _rows)
+        {
+            float screenWidth = _drawRect.width;
+            float screenHeight = _drawRect.height;
+
+            float paddingPixelSize = _elementPadding;
+
+            float letterScale = Mathf.Min(
+                (screenWidth - (paddingPixelSize * _columns)) / _columns,
+                (screenHeight - (paddingPixelSize * _rows)) / _rows);
+
+            return letterScale;
+        }
+
+        #endregion
+
         #region Canvas
 
         [System.Diagnostics.Contracts.Pure]
@@ -210,12 +229,6 @@ namespace Utilities
             moverMB.StartCoroutine(MoveTo_Internal(_trans, _location, _endScale, _moveSpeed, _speedOverTime));
         }
 
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static void StopAllMovementCoroutines()
-        {
-            moverMB.StopAllCoroutines();
-        }
-
         private static IEnumerator MoveTo_Internal(RectTransform _trans, Vector2 _location, Vector2 _endScale, float _moveSpeed, AnimationCurve _speedOverTime)
         {
             //speed = distance / time =>
@@ -236,6 +249,95 @@ namespace Utilities
             }
         }
 
+        public static void AbsoluteMoveTo(ref RectTransform _rectTrans, ref AnimationCurve _animCurve, float _speed, Vector3 _destination)
+        {
+            Vector3 displacement = _destination - _rectTrans.position;
+            myStaticMB.StartCoroutine(Internal_UITranslate(_rectTrans, _animCurve, _speed, displacement));
+        }
+
+        public static void LocalMoveTo(ref RectTransform _rectTrans, ref AnimationCurve _animCurve, float _speed, Vector3 _destination)
+        {
+            Vector3 displacement = _destination - _rectTrans.localPosition;
+            myStaticMB.StartCoroutine(Internal_UITranslate(_rectTrans, _animCurve, _speed, displacement));
+        }
+
+        public static void UITranslate(ref RectTransform _rectTrans, ref AnimationCurve _animCurve, float _speed, Vector3 _translationOffset)
+        {
+            myStaticMB.StartCoroutine(Internal_UITranslate(_rectTrans, _animCurve, _speed, _translationOffset));
+        }
+
+        private static IEnumerator Internal_UITranslate(RectTransform _rectTrans, AnimationCurve _animCurve, float _speed, Vector3 _translationOffset)
+        {
+            Vector3 startPos = _rectTrans.localPosition;
+            float distance = _translationOffset.magnitude;
+            float totalLerpTime = distance / _speed;
+            float timer = 0;
+            float percentage = 0;
+
+            while (percentage < 1)
+            {
+                percentage = timer / totalLerpTime;
+                _rectTrans.localPosition = startPos + (_translationOffset * (_animCurve.Evaluate(percentage)));
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        public static void UIJump(ref RectTransform _rectTrans, ref AnimationCurve _animCurve, float _speed, float _height)
+        {
+            myStaticMB.StartCoroutine(Internal_UIJump(_rectTrans, _animCurve, _speed, _height));
+        }
+
+        private static IEnumerator Internal_UIJump(RectTransform _rectTrans, AnimationCurve _animCurve, float _speed, float _height)
+        {
+            // speed = distance / time;
+            //time = distance / speed;
+            float totalLerpTime = _height * 2 / _speed;
+            float timer = 0;
+            float percentage = 0;
+            Vector3 startPos = _rectTrans.localPosition;
+
+            while (percentage < 1)
+            {
+                percentage = timer / totalLerpTime;
+                _rectTrans.localPosition = startPos + (Vector3.up * (_animCurve.Evaluate(percentage) * _height));
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        public static void UIRotate(ref RectTransform _rectTrans, ref AnimationCurve _animCurve, float _speed, float _angle)
+        {
+            myStaticMB.StartCoroutine(Internal_UIRotate(_rectTrans, _animCurve, _speed, _angle));
+        }
+
+        private static IEnumerator Internal_UIRotate(RectTransform _rectTrans, AnimationCurve _animCurve, float _speed, float _angle)
+        {
+            // speed = distance / time;
+            //time = distance / speed;
+            float totalLerpTime = _angle * 2 / _speed;
+            float timer = 0;
+            float percentage = 0;
+            Quaternion startRot = _rectTrans.rotation;
+
+            while (percentage < 1)
+            {
+                percentage = timer / totalLerpTime;
+                float newAngle = startRot.eulerAngles.z + (_animCurve.Evaluate(percentage) * _angle);
+                _rectTrans.rotation = Quaternion.Euler(0, 0, newAngle);//Rotate(0, 0, _animCurve.Evaluate(percentage) * _angle * Time.deltaTime);
+                //_rectTrans.rotation = startPos + (Vector3.up * (_animCurve.Evaluate(percentage) * _angle));
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public static void StopAllMovementCoroutines()
+        {
+            moverMB.StopAllCoroutines();
+        }
+        
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static void StopAllMoveOperations()
         {
