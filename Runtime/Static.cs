@@ -14,6 +14,7 @@ namespace SpacePigs.Utilities
         public delegate void Double_Delegate(double _val);
         public delegate void Vector2_Delegate(Vector2 _val);
         public delegate void Vector3_Delegate(Vector3 _val);
+
         public static WaitForEndOfFrame WaitForEndOfFrame = new WaitForEndOfFrame();
         public static WaitForSeconds WaitFor0Point15Second = new WaitForSeconds(.15f);
         public static WaitForSeconds WaitFor0Point1Second = new WaitForSeconds(.1f);

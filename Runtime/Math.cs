@@ -88,41 +88,6 @@ namespace SpacePigs.Math
 
         #endregion
 
-        //TODO(chris): Move to Random File?
-        #region Random
-
-        public static List<int> GenerateRandomNumbers(int count, int minValue, int maxValue)
-        {
-            List<int> possibleNumbers = new List<int>();
-            List<int> chosenNumbers = new List<int>();
-
-            for (int index = minValue; index < maxValue; index++)
-                possibleNumbers.Add(index);
-
-            while (chosenNumbers.Count < count)
-            {
-                int position = UnityEngine.Random.Range(0, possibleNumbers.Count);
-                chosenNumbers.Add(possibleNumbers[position]);
-                possibleNumbers.RemoveAt(position);
-            }
-            return chosenNumbers;
-        }
-
-        public static IEnumerator BasicLerp(float startVal, float endVal, float duration)
-        {
-            float timer = 0f;
-            float returnVal = startVal;
-            while (timer < duration)
-            {
-                timer += Time.smoothDeltaTime;
-                returnVal = Mathf.Lerp(startVal, endVal, (timer / duration));
-                yield return returnVal;
-            }
-            yield return endVal;
-        }
-
-        #endregion
-
         #endregion
     }
 }

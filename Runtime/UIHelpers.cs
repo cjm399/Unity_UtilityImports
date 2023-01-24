@@ -20,6 +20,7 @@ namespace SpacePigs.Utilities
         private static MyStaticMB myStaticMB;
         private static MyStaticMB moverMB;
 
+        [RuntimeInitializeOnLoadMethod]
         public static void Initialize()
         {
             if (myStaticMB == null)

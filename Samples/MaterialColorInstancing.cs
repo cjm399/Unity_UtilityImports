@@ -1,3 +1,5 @@
+using SpacePigs.Math;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +10,7 @@ namespace Utilities.Samples
     {
         public Color col = Color.red;
         public bool pickRandomColor = false;
+
         void OnValidate()
         {
             MaterialPropertyBlock mpb = new MaterialPropertyBlock();
@@ -15,7 +18,7 @@ namespace Utilities.Samples
             Color colorToSet = col;
             if (pickRandomColor)
             {
-                colorToSet = new Color32((byte)Random.Range(0, 256), (byte)Random.Range(0, 256), (byte)Random.Range(0, 256), 1);
+                colorToSet = new Color(Rand.GetRandomPercentage(), Rand.GetRandomPercentage(), Rand.GetRandomPercentage(), 1);
             }
             mpb.SetColor("_Color", colorToSet);
             GetComponent<MeshRenderer>().SetPropertyBlock(mpb);
