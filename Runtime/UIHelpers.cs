@@ -354,6 +354,12 @@ namespace SpacePigs.Utilities
         }
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public static void LerpImageColor(ref UnityEngine.UI.Image _img, ref AnimationCurve _animCurve, Color _start, Color _end, float _time)
+        {
+            myStaticMB.StartCoroutine(Internal_LerpImageColor(_img, _animCurve, _start, _end, _time));
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static void LerpImageOpacity(ref UnityEngine.UI.Image _img, float _start, float _end, float _time)
         {
             Color start = _img.color;
@@ -372,6 +378,20 @@ namespace SpacePigs.Utilities
             {
                 percentage = (timer / _lerpTime);
                 _img.color = Color.Lerp(_start, _end, percentage);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        private static IEnumerator Internal_LerpImageColor(UnityEngine.UI.Image _img, AnimationCurve _animCurve, Color _start, Color _end, float _lerpTime)
+        {
+            float timer = 0;
+            float percentage = 0;
+
+            while (percentage < 1)
+            {
+                percentage = (timer / _lerpTime);
+                _img.color = Color.Lerp(_start, _end, _animCurve.Evaluate(percentage));
                 timer += Time.deltaTime;
                 yield return null;
             }
