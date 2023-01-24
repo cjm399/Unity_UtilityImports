@@ -17,6 +17,9 @@ namespace SpacePigs.Utilities
         public static WaitForEndOfFrame WaitForEndOfFrame = new WaitForEndOfFrame();
         public static WaitForSeconds WaitFor0Point15Second = new WaitForSeconds(.15f);
         public static WaitForSeconds WaitFor0Point1Second = new WaitForSeconds(.1f);
+        public static WaitForSeconds WaitFor0Point25Second = new WaitForSeconds(.25f);
+        public static WaitForSeconds WaitFor0Point33Second = new WaitForSeconds(.33f);
+        public static WaitForSeconds WaitFor0Point5Second = new WaitForSeconds(.5f);
         public static WaitForSeconds WaitFor1Second = new WaitForSeconds(1f);
 
         [System.Diagnostics.Contracts.Pure]
