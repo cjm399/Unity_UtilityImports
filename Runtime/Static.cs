@@ -4,6 +4,8 @@ namespace SpacePigs.Utilities
 {
     public static class Static
     {
+        public const System.Runtime.CompilerServices.MethodImplOptions INLINE = System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining;
+
         public delegate void Void_Delegate();
         public delegate void Int_Delegate(int _val);
         public delegate void Bool_Delegate(bool _val);

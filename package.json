@@ -1,11 +1,11 @@
 {
   "name": "com.chrismccole.static-utilities-scripts",
   "displayName": "Static Utility Scripts",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "unity": "2021.3",
   "licensesUrl": "See LICENSE.md",
   "author": {
-    "name": "Chris McCole",
+    "name": "Space Pigs",
     "email": "chrismccole1@gmail.com",
     "url": "https://www.chrismccole.com"
   },
